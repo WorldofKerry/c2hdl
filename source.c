@@ -7,15 +7,15 @@ while (y <= y2)
     while (x <= xR)
     {
         plot = 1; 
-        x++;
+        x = x + 1;
     }
     while (errR < 0)
     {
-        xR++;
+        xR = xR + 1;
         errR = errR + 2 * (y2 - y1);
     }
     errR = errR - 2 * (x2 - x1);
-    y++;
+    y = y + 1;
 }
 int counter = 0;
 while (counter < 10)
