@@ -6,7 +6,7 @@ while (y <= y2)
     int x = x1;
     while (x <= xR)
     {
-        setPixel(x, y, 1);
+        plot = 1; 
         x++;
     }
     while (errR < 0)
