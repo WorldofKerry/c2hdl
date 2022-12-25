@@ -13,9 +13,9 @@ if (a < b) {
     if (a > b) {
         a = a + 14; 
     }
-    c = 11; 
+    c = b + 11; 
 }
-c = 123; 
+c = c + 5; 
 ```
 should convert to: 
 ```
@@ -26,60 +26,34 @@ if (10 < b) begin
     if (10 + 1 > b) begin
         a <= 10 + 1 + 14; 
     end
-    c <= 11; 
-}
-c <= 123; 
+    c <= b + 11; 
+end
+c <= c + 5; 
 ```
 currently, the program converts to: 
 ```
-if ( __root__ ) begin
-  if ( 10 < b ) begin
-    if ( 10 + 1 > b ) begin
-      a <= 10 + 1 + 14
-    end else begin
-      a <= 10 + 1
-    end
+if ( 10 < b ) begin
+  if ( 10 + 1 > 12 ) begin
+    a <= 10 + 1 + 14
+    b <= 12
+    c <= 12 + 11 + 5
   end else begin
-    if ( 10 + 1 > b ) begin
-      a <= 10 + 14
-    end else begin
-      a <= 10
-    end
+    a <= 10 + 1
+    b <= 12
+    c <= 12 + 11 + 5
   end
 end else begin
-  if ( 10 < b ) begin
-    if ( 10 + 1 > b ) begin
-      a <= a + 1 + 14
-    end else begin
-      a <= a + 1
-    end
+  if ( 10 > b ) begin
+    a <= 10
+    b <= b
+    c <= c + 5
   end else begin
-    if ( 10 + 1 > b ) begin
-      a <= a + 14
-    end else begin
-      a <= a
-    end
-  end
-end
-if ( a < b ) begin
-  b <= 12
-end else begin
-  b <= b
-end
-if ( a < b ) begin
-  if ( __root__ ) begin
-    c <= 11 + 123
-  end else begin
-    c <= 11
-  end
-end else begin
-  if ( __root__ ) begin
-    c <= 123
-  end else begin
-    c <= c
+    a <= 10
+    b <= b
+    c <= c + 5
   end
 end
 ```
-which is not correct, as the blocks of code are do not correctly replace the conditions with the updated values. 
+which is correct (although a bit inefficient). Yay!
 
 ## Step 2: Breaking Down While Loops
