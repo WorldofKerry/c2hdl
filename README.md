@@ -1,6 +1,9 @@
 # c2hdl
 The idea is simple. Create synthesizable Verilog HDL from C code. 
 
+## How to use: 
+Take your C code with no function declarates. Paste it into ChatGPT with prompt 'Rewrite this C code using a single `while(true)` and if statements. If there is an `if (condition) { ... } else { ... }` statement, replace it with `if (condition) { ... } if (!condition) { ... }`'. Paste the output to the source.c file. Run all of `main.ipynb`. 
+
 ## Step 1: Blocking to Non-blocking
 Combinational logic in Verilog requires non-blocking assignments (otherwise it may not be possible to do the logic on one clock cycle). 
 Therefore, given a C code, we must find a way to generate the appropriate sequential logic. 

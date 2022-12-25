@@ -1,17 +1,15 @@
-cx = 100;
-cy = 150;
-r = 50;
-x = cx - r;
-y = cy - r;
-
-while (true) {
-    if (y > cy + r) {
-        break;
-    }
-    if (x > cx + r) {
+while(true) {
+    if (y <= y2) {
+        state = 4; 
         y++;
-        x = cx - r;
+        if (errR < 0) {
+            xR++;
+            errR = errR + 2*(y2-y1);
+        } else {
+            errR = errR - 2*(x2-x1);
+        }
+    } else {
+        break;
+        errR = 123; 
     }
-    state = state;
-    x++;
 }
