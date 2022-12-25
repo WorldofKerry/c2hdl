@@ -13,9 +13,9 @@ if (a < b) {
     if (a > b) {
         a = a + 14; 
     }
-    c = 11; 
+    c = b + 11; 
 }
-c = 123; 
+c = c + 5; 
 ```
 should convert to: 
 ```
@@ -26,9 +26,9 @@ if (10 < b) begin
     if (10 + 1 > b) begin
         a <= 10 + 1 + 14; 
     end
-    c <= 11; 
-}
-c <= 123; 
+    c <= b + 11; 
+end
+c <= c + 5; 
 ```
 currently, the program converts to: 
 ```
@@ -36,25 +36,24 @@ if ( 10 < b ) begin
   if ( 10 + 1 > 12 ) begin
     a <= 10 + 1 + 14
     b <= 12
-    c <= 11 + 123
+    c <= 12 + 11 + 5
   end else begin
     a <= 10 + 1
     b <= 12
-    c <= 11 + 123
+    c <= 12 + 11 + 5
   end
 end else begin
   if ( 10 > b ) begin
     a <= 10
     b <= b
-    c <= 123
+    c <= c + 5
   end else begin
     a <= 10
     b <= b
-    c <= 123
+    c <= c + 5
   end
 end
 ```
 which is correct (although a bit inefficient). Yay!
-Not too sure how it works when variables are interdependent, e.g. `a = b + 1`
 
 ## Step 2: Breaking Down While Loops
