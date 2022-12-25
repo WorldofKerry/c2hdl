@@ -5,13 +5,13 @@ x = cx - r;
 y = cy - r;
 
 while (true) {
-  if (x > cx + r) {
-    break;
-  }
-  if (y > cy + r) {
+    if (y > cy + r) {
+        break;
+    }
+    if (x > cx + r) {
+        y++;
+        x = cx - r;
+    }
+    state = state;
     x++;
-    y = cy - r;
-  }
-  plot = 1;
-  y++;
 }
