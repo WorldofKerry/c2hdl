@@ -55,5 +55,6 @@ end else begin
 end
 ```
 which is correct (although a bit inefficient). Yay!
+Not too sure how it works when variables are interdependent, e.g. `a = b + 1`
 
 ## Step 2: Breaking Down While Loops
