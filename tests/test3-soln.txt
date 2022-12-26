@@ -1,8 +1,12 @@
-if (__root__) { -> depth:0 selection: [] variables: {}
-if (y < y2) { -> depth:1 selection: [0] variables: {'x': 'x1', 'x1': 'x1', 'y': 'y + 1'}
-  x = x1; y = y + 1; -> selection: [0, 0] variables: {}
+if (__root__) { -> depth:0 selection: [] variables: {'a': '10', 'c': 'c + 5'}
+a = 10; -> selection: [0]
+if (a < b) { -> depth:1 selection: [1] variables: {'a': 'a + 1', 'b': 'b', 'c': 'b + 11'}
+  a = a + 1; b = 12; -> selection: [1, 0]
+  if (a > b) { -> depth:2 selection: [1, 1] variables: {'a': 'a + 14'}
+    a = a + 14; -> selection: [1, 1, 0]
+  }
+  c = b + 11; -> selection: [1, 2]
 }
-if (!( y < y2 )) { -> depth:1 selection: [1] variables: {}
-  break; -> selection: [1, 0] variables: {}
-}
+c = c + 5;  -> selection: [2]
+ -> selection: [2]
 }
