@@ -10,3 +10,4 @@ if (a < b) { -> depth:1 selection: [1] variables: {'a': 'a + 1', 'b': 'b', 'c': 
 c = c + 5;  -> selection: [2]
  -> selection: [2]
 }
+
