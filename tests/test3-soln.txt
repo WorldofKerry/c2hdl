@@ -1,0 +1,8 @@
+if (__root__) { -> depth:0 selection: [] variables: {}
+if (y < y2) { -> depth:1 selection: [0] variables: {}
+  x = x1; y++; -> selection: [0, 0] variables: {}
+}
+if (!( y < y2 )) { -> depth:1 selection: [1] variables: {}
+  break; -> selection: [1, 0] variables: {}
+}
+}
